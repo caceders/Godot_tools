@@ -129,17 +129,12 @@ func select_active_target(target: Targetable):
 ## If the component is the parent pass "." as component.
 ## If accessing subcomponent use [Component/Subcomponent]
 ## If accessing subproperty use [Property.subproperty]
-func sort_targets_by(component: String, property: String, is_reversed: bool = false, closest_to = null):
+func sort_targets_by(component_path: String, property: String, is_reversed: bool = false, closest_to = null):
 	
 	# Set the component and property globaly for use in other sorting method
-	var component_path = component.split("/")
-	if component_path.size() == 1:
-		_component = component
-		_subcomponent = null
-	else:
-		_component = component_path[0]
-		_subcomponent = component_path[1]
-		
+	var components = component_path.split("/")
+	_component = components[-1]
+	
 	var property_path = property.split(".")
 	if property_path.size() == 1:
 		_property = property
@@ -169,23 +164,17 @@ func sort_targets_by(component: String, property: String, is_reversed: bool = fa
 	var propery_is_bool: bool = false
 	
 	for target in targets:
-		# Check if target has the relevant component
-		if not target.get_parent().has_node(component):
-			targets_has_not_property.append(target)
-		
-		# Check if target has the relevant subcomponent
-		elif _subcomponent:
-			if not target.get_parent().get_node(component).has_node(_subcomponent):
+		var found_component = target
+		var has_found_all_wanted_component = true
+		# Check if target has the relevant components
+		for component in components:
+			if not found_component.get_parent().has_node(component):
 				targets_has_not_property.append(target)
-		
-		# Progress beyond here if target had component 
-		else:
-			var found_component = null
-			if component_path.size() == 1:
-				found_component = target.get_parent().get_node(component)
-			else:
-				found_component = target.get_parent().get_node(component).get_node(_subcomponent)
-				
+				has_found_all_wanted_component = false
+			found_component = found_component.get_parent().get_node(component)
+			
+			# Progress beyond here if target had component 
+		if has_found_all_wanted_component:
 			# Check if component has the relevant propery
 			if not _subproperty:
 				# If subproperty not existing worry and worry hard

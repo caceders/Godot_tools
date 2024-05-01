@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://Targeting system/TargetSelector.gd" id="3_3k8hf"]
 [ext_resource type="Script" path="res://Targeting system/Targetable.gd" id="4_2e31c"]
 
-
 [node name="TargetTester" type="Node2D" node_paths=PackedStringArray("targets", "target_selector", "line_edit")]
 script = ExtResource("1_t1e32")
 targets = [NodePath("Target4/Targetable"), NodePath("Target1/Targetable"), NodePath("Target2/Targetable"), NodePath("Target3/Targetable")]
@@ -19,8 +18,9 @@ position = Vector2(29, 233)
 modulate = Color(0, 1, 1, 1)
 texture = ExtResource("1_2e7ln")
 
-[node name="TargetSelector" type="Node" parent="Targeter"]
+[node name="TargetSelector" type="Node" parent="Targeter" node_paths=PackedStringArray("targets")]
 script = ExtResource("3_3k8hf")
+targets = [NodePath("../../Target1/Targetable"), NodePath("../../Target2/Targetable"), NodePath("../../Target3/Targetable"), NodePath("../../Target4/Targetable")]
 
 [node name="Target1" type="Node2D" parent="."]
 position = Vector2(200, 300)

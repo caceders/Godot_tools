@@ -14,19 +14,19 @@ func _process(delta):
 		target_selector.targets[i].get_parent().get_node("Label").text = str(i)
 	pass
 	
-	if Input.is_action_just_pressed("Left") and not line_edit.has_focus():
+	if Input.is_action_just_pressed("ui_left") and not line_edit.has_focus():
 		print("sorting")
 		target_selector.sort_targets_by(".", "position.x")
-	
-	if Input.is_action_just_pressed("Up") and not line_edit.has_focus():
+
+	if Input.is_action_just_pressed("ui_up") and not line_edit.has_focus():
 		print("sorting")
 		target_selector.sort_targets_by(".", "position.y")
 	
-	if Input.is_action_just_pressed("Down") and not line_edit.has_focus():
+	if Input.is_action_just_pressed("ui_down") and not line_edit.has_focus():
 		print("sorting")
 		target_selector.sort_targets_by("String", "text")
 
-	if Input.is_action_just_pressed("Right") and not line_edit.has_focus(): 
+	if Input.is_action_just_pressed("ui_right") and not line_edit.has_focus(): 
 		print("sorting")
 		target_selector.sort_targets_by(".", "position.x", true)
 	
