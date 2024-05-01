@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2eef3hpc4b0d"]
+
+[ext_resource type="Script" path="res://Tools/VisualController/VisualControllerSuddenAnimation2D.gd" id="1_xh1qm"]
+
+[node name="VisualControllerSuddenAnimation2D" type="Node"]
+script = ExtResource("1_xh1qm")
+sudden_animation = "base"

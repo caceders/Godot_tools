@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4xtvd6sj0n6f"]
+
+[ext_resource type="Script" path="res://Tools/Targeting system/Targetable.gd" id="1_h63rj"]
+
+[node name="Targetable" type="Node"]
+script = ExtResource("1_h63rj")

@@ -1,0 +1,134 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvvin4hatwc21"]
+
+[ext_resource type="Texture2D" uid="uid://ci62jb3rb0apj" path="res://icon.svg" id="1_2e7ln"]
+[ext_resource type="Script" path="res://Tools/Targeting system/TargetTester.gd" id="1_t1e32"]
+[ext_resource type="Script" path="res://Tools/Targeting system/TargetSelector.gd" id="3_3k8hf"]
+[ext_resource type="Script" path="res://Tools/Targeting system/Targetable.gd" id="4_2e31c"]
+
+[node name="TargetTester" type="Node2D" node_paths=PackedStringArray("targets", "target_selector", "line_edit")]
+script = ExtResource("1_t1e32")
+targets = [NodePath("Target4/Targetable"), NodePath("Target1/Targetable"), NodePath("Target2/Targetable"), NodePath("Target3/Targetable")]
+target_selector = NodePath("Targeter/TargetSelector")
+line_edit = NodePath("LineEdit")
+
+[node name="Targeter" type="Node2D" parent="."]
+position = Vector2(29, 233)
+
+[node name="Sprite2D" type="Sprite2D" parent="Targeter"]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("1_2e7ln")
+
+[node name="TargetSelector" type="Node" parent="Targeter"]
+script = ExtResource("3_3k8hf")
+
+[node name="Target1" type="Node2D" parent="."]
+position = Vector2(200, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="Target1"]
+position = Vector2(0.0452271, -1.68533)
+texture = ExtResource("1_2e7ln")
+
+[node name="Label" type="Label" parent="Target1"]
+offset_left = -40.0
+offset_top = -184.0
+offset_right = 18.0
+offset_bottom = -46.0
+theme_override_font_sizes/font_size = 101
+text = "0
+"
+
+[node name="String" type="Label" parent="Target1"]
+offset_left = -107.0
+offset_top = 64.0
+offset_right = 97.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 51
+text = "Baltazar"
+
+[node name="Targetable" type="Node" parent="Target1"]
+script = ExtResource("4_2e31c")
+
+[node name="Target2" type="Node2D" parent="."]
+position = Vector2(400, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="Target2"]
+texture = ExtResource("1_2e7ln")
+
+[node name="Label" type="Label" parent="Target2"]
+offset_left = -40.0
+offset_top = -184.0
+offset_right = 18.0
+offset_bottom = -46.0
+theme_override_font_sizes/font_size = 101
+text = "0
+"
+
+[node name="Targetable" type="Node" parent="Target2"]
+script = ExtResource("4_2e31c")
+
+[node name="String" type="Label" parent="Target2"]
+offset_left = -103.0
+offset_top = 64.0
+offset_right = 101.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 51
+text = "Gudna"
+
+[node name="Target3" type="Node2D" parent="."]
+position = Vector2(650, 150)
+
+[node name="Sprite2D" type="Sprite2D" parent="Target3"]
+texture = ExtResource("1_2e7ln")
+
+[node name="Label" type="Label" parent="Target3"]
+offset_left = -40.0
+offset_top = -184.0
+offset_right = 18.0
+offset_bottom = -46.0
+theme_override_font_sizes/font_size = 101
+text = "0
+"
+
+[node name="Targetable" type="Node" parent="Target3"]
+script = ExtResource("4_2e31c")
+
+[node name="String" type="Label" parent="Target3"]
+offset_left = -90.0
+offset_top = 66.0
+offset_right = 114.0
+offset_bottom = 204.0
+theme_override_font_sizes/font_size = 51
+text = "Klompen"
+
+[node name="Target4" type="Node2D" parent="."]
+position = Vector2(800, 400)
+
+[node name="Sprite2D" type="Sprite2D" parent="Target4"]
+texture = ExtResource("1_2e7ln")
+
+[node name="Label" type="Label" parent="Target4"]
+offset_left = -40.0
+offset_top = -184.0
+offset_right = 18.0
+offset_bottom = -46.0
+theme_override_font_sizes/font_size = 101
+text = "0
+"
+
+[node name="Targetable" type="Node" parent="Target4"]
+script = ExtResource("4_2e31c")
+
+[node name="String" type="Label" parent="Target4"]
+offset_left = -100.0
+offset_top = 64.0
+offset_right = 104.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 51
+text = "vissen"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_right = 67.0625
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 86
+
+[connection signal="text_changed" from="LineEdit" to="." method="_sort_by_search" unbinds=1]
