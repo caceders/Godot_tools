@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvvin4hatwc21"]
 
-[ext_resource type="Texture2D" uid="uid://ci62jb3rb0apj" path="res://icon.svg" id="1_2e7ln"]
-[ext_resource type="Script" path="res://Tools/Targeting system/TargetTester.gd" id="1_t1e32"]
-[ext_resource type="Script" path="res://Tools/Targeting system/TargetSelector.gd" id="3_3k8hf"]
-[ext_resource type="Script" path="res://Tools/Targeting system/Targetable.gd" id="4_2e31c"]
+[ext_resource type="Texture2D" uid="uid://bu5sjfg26x406" path="res://icon.svg" id="1_2e7ln"]
+[ext_resource type="Script" path="res://Targeting system/TargetTester.gd" id="1_t1e32"]
+[ext_resource type="Script" path="res://Targeting system/TargetSelector.gd" id="3_3k8hf"]
+[ext_resource type="Script" path="res://Targeting system/Targetable.gd" id="4_2e31c"]
+
 
 [node name="TargetTester" type="Node2D" node_paths=PackedStringArray("targets", "target_selector", "line_edit")]
 script = ExtResource("1_t1e32")

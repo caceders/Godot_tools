@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5vc3as0rr0tx"]
 
-[ext_resource type="Script" path="res://Tools/DamageSystem/DamageRecievingSystem.gd" id="1_0061f"]
+[ext_resource type="Script" path="res://DamageSystem/DamageRecievingSystem.gd" id="1_0061f"]
+
 
 [node name="DamageReceivingSystem" type="Node"]
 script = ExtResource("1_0061f")

@@ -10,10 +10,10 @@ class_name CharackterMovement2D extends Node2D
 #region Variables
 ## Dictionary of speed profiles and their corresponging speed
 @export var speed_profiles = {"still" : 0, "walk" : 400, "sprint" : 800}
-## Variable varying the knockback-falloff
-@export var knockback_reduction: float = 0.15
 ## The standard knockback force on this object
 @export var standard_applied_knockback_force: float = 800
+## Variable varying the knockback-falloff
+@export var knockback_reduction: float = 0.15
 ## Variable for creating intermediate values for speed for smoothing
 @export var speed_smoothing: float = 0.7
 ## Variable for creating intermediate values for direction for smoothing

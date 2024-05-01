@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://dpgdi52krgxyf"]
 
-[ext_resource type="Script" path="res://Tools/ResourcePool/ResourcePool.gd" id="1_f8bem"]
+[ext_resource type="Script" path="res://ResourcePool/ResourcePool.gd" id="1_f8bem"]
+
 
 [node name="ResourcePool" type="Node"]
 script = ExtResource("1_f8bem")

@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7uhyilstb064"]
 
-[ext_resource type="Script" path="res://Tools/Targeting system/TargetSelector.gd" id="1_us50a"]
+[ext_resource type="Script" path="res://Targeting system/TargetSelector.gd" id="1_us50a"]
+
 
 [node name="TargetSelector" type="Node"]
 script = ExtResource("1_us50a")
