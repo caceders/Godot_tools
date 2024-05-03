@@ -378,7 +378,6 @@ func _on_depletion_stopped() -> void:
 	if delay_decay_automatically_when_stop_depleting:
 		rest_decay()
 
-
 func _on_resource_amount_added() -> void:
 	# Apply the resting times if added
 	if delay_growth_automatically_when_adding:

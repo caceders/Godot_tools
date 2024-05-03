@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://1i4wloron7u8"]
+
+[ext_resource type="Script" path="res://ItemSystem/ItemTester.gd" id="1_efwxi"]
+[ext_resource type="Script" path="res://ItemSystem/Texter.gd" id="2_qep1m"]
+[ext_resource type="PackedScene" uid="uid://dx0ulwkj620dv" path="res://ItemSystem/Item.tscn" id="2_w04oa"]
+[ext_resource type="PackedScene" uid="uid://bw0rfxtnqgw2f" path="res://ItemSystem/Capability.tscn" id="3_66iwn"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("item", "capability")]
+script = ExtResource("1_efwxi")
+item = NodePath("Item")
+capability = NodePath("Texter clone")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 270.0
+offset_bottom = 71.0
+
+[node name="Item" parent="." instance=ExtResource("2_w04oa")]
+amount = 5
+
+[node name="Texter" parent="Item" node_paths=PackedStringArray("label") instance=ExtResource("3_66iwn")]
+script = ExtResource("2_qep1m")
+label = NodePath("../../Label")
+id = 1
+capability_description = "changes the text to \"Hello world\""
+
+[node name="Texter clone" parent="." node_paths=PackedStringArray("label") instance=ExtResource("3_66iwn")]
+script = ExtResource("2_qep1m")
+label = NodePath("../Label")
+id = 1
+capability_description = "changes the text to \"Hello world\""

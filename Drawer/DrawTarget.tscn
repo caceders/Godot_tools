@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlfex5nf65f2g"]
 
-[ext_resource type="Script" path="res://Targeting system/Targetable.gd" id="1_pbgja"]
+[ext_resource type="Script" path="res://Targetingsystem/Targetable.gd" id="1_pbgja"]
 
 [node name="DrawTarget" type="Node"]
 script = ExtResource("1_pbgja")
