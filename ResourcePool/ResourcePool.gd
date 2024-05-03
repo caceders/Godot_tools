@@ -40,6 +40,7 @@ signal depletion_stopped
 
 @export var has_max_amount: bool = true
 @export var has_min_amount: bool = true
+@export var start_amount: float = 100
 @export var max_amount: float = 100
 @export var min_amount: float = 0
 ## Base growth in unit/seconds. Always applied unless other parameters tell it not to.
@@ -124,7 +125,7 @@ var _amount: float = 1
 #endregion
 
 func _ready():
-	_amount = max_amount
+	_amount = start_amount
 	_signal_setup()
 
 func _process(delta):
@@ -140,13 +141,13 @@ func get_amount() -> float:
 ## Method to be used externaly for adding to resourcepool
 func add_to_amount(amount_to_add: float) -> void:
 	_increase_amount(amount_to_add)
-	resource_amount_added.emit()
+	resource_amount_added.emit(amount_to_add)
 
 
 ## Method to be used externaly for removing from resourcepool
 func remove_from_amount(amount_to_remove: float) -> void:
 	_decrease_amount(amount_to_remove)
-	resource_amount_removed.emit()
+	resource_amount_removed.emit(amount_to_remove)
 
 
 ## Aplies extra growth on resourcepool for a certain time
@@ -169,7 +170,7 @@ func start_replenishig(amount_to_replenish: float) -> void:
 	var last_replenish_amount = _replenish
 	_replenish += amount_to_replenish
 	if (_replenish != 0) and (last_replenish_amount == 0):
-		replenish_started.emit()
+		replenish_started.emit(amount_to_replenish)
 
 
 ## Stops replenishing the resourcepool by the passed value per second
@@ -178,7 +179,7 @@ func stop_replenishing(amount_to_stop: float) -> void:
 	var last_replenish_amount = _replenish
 	_replenish -= amount_to_stop
 	if (_replenish == 0) and (last_replenish_amount != 0):
-		replenish_stopped.emit()
+		replenish_stopped.emit(amount_to_stop)
 
 
 ## Starts depleting the resourcepool of the passed value per second. Remember to stop!
@@ -187,7 +188,7 @@ func start_depletion(amount_to_deplete: float) -> void:
 	var last_depletion_amount = _depletion
 	_depletion += amount_to_deplete
 	if (_depletion != 0) and (last_depletion_amount == 0):
-		depletion_started.emit()
+		depletion_started.emit(amount_to_deplete)
 
 
 ## Stops depleting the resourcepool of the passed value per seconds
@@ -196,7 +197,7 @@ func stop_depletion(amount_to_stop_deplete: float) -> void:
 	var last_depletion_amount = _depletion
 	_depletion -= amount_to_stop_deplete
 	if (_depletion == 0) and (last_depletion_amount != 0):
-		depletion_stopped.emit()
+		depletion_stopped.emit(amount_to_stop_deplete)
 
 
 ## Checking wether object is being depleted or not
@@ -250,7 +251,7 @@ func _increase_amount(amount_to_add: float) -> void:
 	# If no max amount add, emit signal and return
 	if not has_max_amount:
 		_amount += amount_to_add
-		resource_amount_changed.emit()
+		resource_amount_changed.emit(_amount)
 		return
 	
 	# If amount already at max do nothing
@@ -259,12 +260,12 @@ func _increase_amount(amount_to_add: float) -> void:
 	
 	# Add amount and emit signal
 	_amount += amount_to_add
-	resource_amount_changed.emit()
+	resource_amount_changed.emit(_amount)
 	
 	# If amount is maxed (or above) emit signal and reduce to madx
 	if _amount >= max_amount:
 		_amount = max_amount
-		resource_reached_max.emit()
+		resource_reached_max.emit(_amount)
 
 
 ## Internal method for decreasing the amount until reached min if given
@@ -278,7 +279,7 @@ func _decrease_amount(amount_to_subtract: float) -> void:
 	# If no min amount subtract, emit signal and return
 	if not has_min_amount:
 		_amount -= amount_to_subtract
-		resource_amount_changed.emit()
+		resource_amount_changed.emit(_amount)
 		return
 	
 	
@@ -289,12 +290,12 @@ func _decrease_amount(amount_to_subtract: float) -> void:
 	
 	# Subtract amount and emit signal
 	_amount -= amount_to_subtract
-	resource_amount_changed.emit()
+	resource_amount_changed.emit(_amount)
 	
 	# If amount is at minimum (or below) emit signal and increase to min
 	if _amount <= min_amount:
 		_amount = min_amount
-		resource_reached_min.emit()
+		resource_reached_min.emit(_amount)
 
 
 ## Checking wether object should apply base_growth based on setup variables
@@ -343,12 +344,12 @@ func _replenish_and_deplete(delta) -> void:
 
 ## Setting up signals and reactions
 func _signal_setup() -> void:
-	replenish_started.connect(_on_replenish_started)
-	replenish_stopped.connect(_on_replenish_stopped)
-	depletion_started.connect(_on_depletion_started)
-	depletion_stopped.connect(_on_depletion_stopped)
-	resource_amount_added.connect(_on_resource_amount_added)
-	resource_amount_removed.connect(_on_resource_amount_removed)
+	replenish_started.connect(_on_replenish_started.unbind(1))
+	replenish_stopped.connect(_on_replenish_stopped.unbind(1))
+	depletion_started.connect(_on_depletion_started.unbind(1))
+	depletion_stopped.connect(_on_depletion_stopped.unbind(1))
+	resource_amount_added.connect(_on_resource_amount_added.unbind(1))
+	resource_amount_removed.connect(_on_resource_amount_removed.unbind(1))
 
 #region Internal signal reaction methods
 func _on_replenish_started() -> void:

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw0rfxtnqgw2f"]
+[gd_scene load_steps=2 format=3 uid="uid://b0eakx5o42r1p"]
 
-[ext_resource type="Script" path="res://ItemSystem/Capability.gd" id="1_0txa7"]
+[ext_resource type="Script" path="res://ItemSystem/Capability.gd" id="1_74qnc"]
 
 [node name="Capability" type="Node"]
-script = ExtResource("1_0txa7")
+script = ExtResource("1_74qnc")

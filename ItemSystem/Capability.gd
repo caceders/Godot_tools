@@ -1,18 +1,13 @@
 class_name Capability
 extends Node
-## A superclass for item capabilities for the item system
-## The capability should give the item ONE capability I.E Heal on usag
 
-@export var id: int = 0
-@export var capability_description: String = ""
+@export var operand_string: String = ""
+var operand: Node
 
-## Applied immidiately/on pickup. Virtual function override in class extension
-func apply_passive_effect():
-	pass
-
-func remove_passive_effect():
-	pass
-
-## Applied on activation. Virtual function override in class extension
-func  apply_active_effect():
+## Don't override this function! Override _utilize instead
+func utilize():
+	assert(operand != null, "operand in " + name + " was not refrenced and is null!")
+	_utilize()
+	
+func _utilize():
 	pass

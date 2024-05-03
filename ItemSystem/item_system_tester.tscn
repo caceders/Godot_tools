@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0pb6twoo4lof"]
+
+[ext_resource type="Script" path="res://ItemSystem/ItemSystemTester.gd" id="1_gubfb"]
+[ext_resource type="Script" path="res://ItemSystem/TextChanger.gd" id="2_nxkp2"]
+[ext_resource type="PackedScene" uid="uid://dpgdi52krgxyf" path="res://ResourcePool/ResourcePool.tscn" id="3_6vkv4"]
+
+[node name="ItemSystemTester" type="Node2D" node_paths=PackedStringArray("capability", "label")]
+script = ExtResource("1_gubfb")
+capability = NodePath("TextChanger")
+label = NodePath("Text")
+
+[node name="Text" type="Label" parent="."]
+offset_left = 328.0
+offset_top = 187.0
+offset_right = 726.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 81
+text = "TESTING"
+
+[node name="TextChanger" type="Node" parent="."]
+script = ExtResource("2_nxkp2")
+operand_string = "Coins"
+
+[node name="Coins" parent="." instance=ExtResource("3_6vkv4")]
+base_growth = 0.0
+base_replenish = 0.0
+base_depletion = 0.0
+
+[connection signal="resource_amount_changed" from="Coins" to="." method="update_label"]

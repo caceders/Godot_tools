@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0pb6twoo4lof"]
+
+[ext_resource type="Script" path="res://ItemSystem/ItemSystemTester.gd" id="1_gubfb"]
+[ext_resource type="Script" path="res://ItemSystem/TextChanger.gd" id="2_nxkp2"]
+
+[node name="ItemSystemTester" type="Node2D" node_paths=PackedStringArray("label", "capability")]
+script = ExtResource("1_gubfb")
+label = NodePath("Text")
+capability = NodePath("TextChanger")
+
+[node name="Text" type="Label" parent="."]
+offset_left = 328.0
+offset_top = 187.0
+offset_right = 726.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 81
+text = "TESTING"
+
+[node name="TextChanger" type="Node" parent="."]
+script = ExtResource("2_nxkp2")
+operand_string = "Text"
