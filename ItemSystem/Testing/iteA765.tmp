@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0pb6twoo4lof"]
+
+[ext_resource type="Script" path="res://ItemSystem/Testing/ItemSystemTester.gd" id="1_gubfb"]
+[ext_resource type="PackedScene" uid="uid://dpgdi52krgxyf" path="res://ResourcePool/ResourcePool.tscn" id="3_6vkv4"]
+[ext_resource type="PackedScene" uid="uid://bhlynalkd331c" path="res://ItemSystem/Item.tscn" id="3_rlasc"]
+
+[node name="ItemSystemTester" type="Node2D" node_paths=PackedStringArray("item", "label")]
+script = ExtResource("1_gubfb")
+item = NodePath("Item")
+label = NodePath("Text")
+
+[node name="Text" type="Label" parent="."]
+offset_left = 328.0
+offset_top = 187.0
+offset_right = 726.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 81
+text = "TESTING"
+
+[node name="Coins" parent="." instance=ExtResource("3_6vkv4")]
+base_growth = 0.0
+base_replenish = 0.0
+base_depletion = 0.0
+
+[node name="Item" parent="." instance=ExtResource("3_rlasc")]
+
+[connection signal="resource_amount_changed" from="Coins" to="." method="update_label"]
