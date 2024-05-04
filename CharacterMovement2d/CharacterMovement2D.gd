@@ -1,4 +1,4 @@
-class_name CharackterMovement2D extends Node2D
+class_name CharachterMovement2D extends Node2D
 ## Simple class for moving around a CharcterBody2D,
 
 ## To use add to a CharacterBody2D. Add relevant speed profiles to the dictionary through the

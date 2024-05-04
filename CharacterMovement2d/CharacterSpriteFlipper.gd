@@ -5,7 +5,7 @@ extends Node2D
 ## character-intended movement from the CharacterMovement2D node.
 
 @export var visual_controller2D: VisualController2D
-@export var character_movement2D: CharackterMovement2D
+@export var character_movement2D: CharachterMovement2D
 @export var movement_sensitivity: float = 0.1
 
 func _process(delta):
